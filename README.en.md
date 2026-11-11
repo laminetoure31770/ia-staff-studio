@@ -212,6 +212,12 @@ IA STAFF promotes **appropriate model selection and resource-conscious operation
 
 The roadmap is incremental: validate the starter → introduce safe authentication → add model connectors and observability → implement one supervised workflow at a time → enable data retrieval → test enterprise boundaries separately.
 
+## Creating and updating shared templates
+
+Use **[GitHub Actions → Create or update a shared template](https://github.com/laminetoure31770/ia-staff-studio/actions/workflows/manage-templates.yml)** to create or update a distribution manifest, reference workflow, Python example or TypeScript example. Each request generates a separate branch and a pull request for review. The workflow never auto-merges, deploys, migrates a database or executes submitted code. Editing functional source requires additional manual review in the pull request.
+
+See the [template contribution guide](docs/template-contributions.md).
+
 ## Contributing
 
 Issues, documentation corrections, feature requests and pull requests are welcome.
