@@ -15,6 +15,14 @@ Dépôt public de modèles configurables IA STAFF, de CLI Python/TypeScript et d
 - `tests/` et `.github/workflows/` : contrôles qualité.
 - `docs/` : architecture et sécurité.
 
+## Créer ou mettre à jour un template partagé
+
+Depuis GitHub : **[Actions → Create or update a shared template](https://github.com/laminetoure31770/ia-staff-studio/actions/workflows/manage-templates.yml)** → **Run workflow**.
+
+Le formulaire permet de créer ou modifier un manifeste de distribution, un workflow JSON, ou un exemple de code Python/TypeScript. Chaque proposition passe par une **branche dédiée et une pull request**, sans fusion ni déploiement automatique.
+
+[Guide de contribution détaillé](docs/template-contributions.md).
+
 ## Démarrer
 
 ```bash
