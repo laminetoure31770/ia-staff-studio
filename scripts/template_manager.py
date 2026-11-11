@@ -26,7 +26,7 @@ def generate(kind: str, name: str, action: str, title: str, description: str) ->
         raise ValueError("Unsupported kind or action")
     if not SAFE_NAME.fullmatch(name):
         raise ValueError("Name must be a lowercase slug (2–48 characters)")
-    if len(title.strip()) < 3 or len(title) > 100:
+    if any(ord(c) < 32 for c in title + description):\n        raise ValueError("Control characters are not allowed")\n    if len(title.strip()) < 3 or len(title) > 100:
         raise ValueError("Title must contain 3–100 characters")
     if len(description.strip()) < 8 or len(description) > 500:
         raise ValueError("Description must contain 8–500 characters")
