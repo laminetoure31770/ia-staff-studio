@@ -1,0 +1,42 @@
+name: Validate DEV and QUAL (IA STAFF Studio)
+on:
+  push:
+    branches: [dev, qual]
+  pull_request:
+    branches: [dev, qual]
+permissions:
+  contents: read
+jobs:
+  qualification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run all unit and synthetic qualification tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate Python sources and every manifest
+        run: |
+          python3 -m compileall -q cli/python scripts
+          python3 - <<'PY'
+          import json,pathlib
+          for p in pathlib.Path(".").rglob("*.json"):
+              if "node_modules" not in p.parts:
+                  json.loads(p.read_text(encoding="utf-8"))
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check TypeScript CLI
+        working-directory: cli/typescript
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Check Vercel starter types and build
+        working-directory: templates/web-nextjs
+        run: |
+          npm install --no-audit --no-fund
+          npm run typecheck
+          npm run build
