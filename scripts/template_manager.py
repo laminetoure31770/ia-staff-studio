@@ -85,7 +85,7 @@ def generate(kind: str, name: str, action: str, title: str, description: str) ->
         path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     elif kind == "python":
         if not exists:
-            path.write_text('"""' + title.strip() + ' — shareable example (no external actions)."""\n\n'
+            path.write_text('"""Shareable IA STAFF example (no external actions)."""\n\n'
                             'def main() -> None:\n    print("Template ready: configure before use")\n\n'
                             'if __name__ == "__main__":\n    main()\n', encoding="utf-8")
         (path.parent / "README.md").write_text(
