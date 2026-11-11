@@ -1,0 +1,99 @@
+name: Create or update a shared template
+run-name: ${{ inputs.action }} ${{ inputs.kind }} · ${{ inputs.name }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Create a new template or update existing metadata
+        type: choice
+        options:
+          - create
+          - update
+        required: true
+      kind:
+        description: Type of template
+        type: choice
+        options:
+          - distribution
+          - workflow
+          - python
+          - typescript
+        required: true
+      name:
+        description: Lowercase slug, 2-48 characters
+        required: true
+        type: string
+      title:
+        description: Human-readable title
+        required: true
+        type: string
+      description:
+        description: Short purpose, 8-500 characters
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: studio-template-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  prepare-pull-request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out protected base
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate template safely
+        env:
+          ACTION: ${{ inputs.action }}
+          KIND: ${{ inputs.kind }}
+          NAME: ${{ inputs.name }}
+          TITLE: ${{ inputs.title }}
+          DESCRIPTION: ${{ inputs.description }}
+        run: |
+          python3 scripts/template_manager.py \
+            --action "$ACTION" --kind "$KIND" --name "$NAME" \
+            --title "$TITLE" --description "$DESCRIPTION"
+      - name: Validate scaffolds and JSON
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 -m compileall -q cli/python scripts
+          python3 - <<'PY'
+          import pathlib,json
+          for path in pathlib.Path(".").rglob("*.json"):
+              if "node_modules" not in path.parts:
+                  json.loads(path.read_text(encoding="utf-8"))
+          PY
+      - name: Open reviewable pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACTION: ${{ inputs.action }}
+          KIND: ${{ inputs.kind }}
+          NAME: ${{ inputs.name }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "No changes to propose."
+            exit 0
+          fi
+          BRANCH="template/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add catalog/ templates/ workflows/
+          git commit -m "chore(templates): ${ACTION} ${KIND} ${NAME}"
+          git push -u origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "Template: ${ACTION} ${KIND} ${NAME}" \
+            --body "Generated scaffold for review. No automatic merge, deployment, database migration or workflow execution. Verify functionality and licensing before approval."
