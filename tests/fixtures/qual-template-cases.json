@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "environment": "qual",
+  "synthetic": true,
+  "cases": [
+    {"action": "create", "kind": "distribution", "name": "demo-qual", "title": "Qualification Persona", "description": "Isolated fictitious qualification distribution."},
+    {"action": "update", "kind": "distribution", "name": "demo-qual", "title": "Qualification Persona V2", "description": "Updated fictitious distribution metadata for qualification."},
+    {"action": "create", "kind": "workflow", "name": "review-qual", "title": "Human Review QA", "description": "Synthetic approval workflow for qualification."},
+    {"action": "update", "kind": "workflow", "name": "review-qual", "title": "Human Review QA V2", "description": "Updated synthetic approval workflow for qualification."},
+    {"action": "create", "kind": "python", "name": "hello-qual", "title": "Qualification Python", "description": "A standalone Python code example without network access."},
+    {"action": "create", "kind": "typescript", "name": "hello-qual", "title": "Qualification TypeScript", "description": "A standalone TypeScript code example without network access."}
+  ]
+}
