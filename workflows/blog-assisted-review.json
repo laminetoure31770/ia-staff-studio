@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "blog-assisted-review",
+  "title": "Editorial moderation",
+  "status": "reference_only",
+  "execution": "disabled",
+  "humanApproval": true,
+  "nodes": [
+    {
+      "id": "draft",
+      "kind": "draft"
+    },
+    {
+      "id": "sources",
+      "kind": "citation-check"
+    },
+    {
+      "id": "moderate",
+      "kind": "moderation"
+    },
+    {
+      "id": "approve",
+      "kind": "human-approval"
+    },
+    {
+      "id": "publish",
+      "kind": "publish-disabled"
+    }
+  ]
+}

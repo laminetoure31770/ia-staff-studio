@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "agent",
+  "name": "Agent — supervised specialist",
+  "description": "Domain-specific agent, not AGI",
+  "status": "scaffold",
+  "storage": "postgres",
+  "agents": 1,
+  "assistants": 0,
+  "monthlyTokenBudget": 300000,
+  "contextLimit": 4096,
+  "modules": [
+    "agent",
+    "allowlisted-tools",
+    "audit",
+    "human-review"
+  ],
+  "features": {
+    "rag": false,
+    "mcp": true,
+    "graph": false,
+    "multitenant": false,
+    "blog": false
+  },
+  "humanApproval": true,
+  "deployAutomatically": false
+}

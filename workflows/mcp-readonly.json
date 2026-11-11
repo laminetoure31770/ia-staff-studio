@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "mcp-readonly",
+  "title": "Read-only MCP workflow",
+  "status": "reference_only",
+  "execution": "disabled",
+  "humanApproval": true,
+  "nodes": [
+    {
+      "id": "input",
+      "kind": "input"
+    },
+    {
+      "id": "authorize",
+      "kind": "rbac-policy"
+    },
+    {
+      "id": "tool",
+      "kind": "mcp-allowlisted-readonly"
+    },
+    {
+      "id": "audit",
+      "kind": "audit"
+    },
+    {
+      "id": "output",
+      "kind": "output"
+    }
+  ]
+}

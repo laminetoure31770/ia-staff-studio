@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IA STAFF distribution starter manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "status",
+    "modules",
+    "features",
+    "humanApproval",
+    "deployAutomatically"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "enum": [
+        "persona",
+        "agent",
+        "blog",
+        "light",
+        "medium",
+        "pro",
+        "enterprise"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "const": "scaffold"
+    },
+    "agents": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "assistants": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "contextLimit": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "monthlyTokenBudget": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "features": {
+      "type": "object"
+    },
+    "humanApproval": {
+      "const": true
+    },
+    "deployAutomatically": {
+      "const": false
+    }
+  }
+}

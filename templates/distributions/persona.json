@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "persona",
+  "name": "Persona — economical assistant",
+  "description": "Minimal conversational assistant design",
+  "status": "scaffold",
+  "storage": "postgres",
+  "agents": 0,
+  "assistants": 1,
+  "monthlyTokenBudget": 100000,
+  "contextLimit": 2048,
+  "modules": [
+    "assistant",
+    "human-review"
+  ],
+  "features": {
+    "rag": false,
+    "mcp": false,
+    "graph": false,
+    "multitenant": false,
+    "blog": false
+  },
+  "humanApproval": true,
+  "deployAutomatically": false
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "blog",
+  "name": "Blog + assistant",
+  "description": "Editorial drafting and moderation",
+  "status": "scaffold",
+  "storage": "postgres",
+  "agents": 0,
+  "assistants": 1,
+  "monthlyTokenBudget": 200000,
+  "contextLimit": 3072,
+  "modules": [
+    "blog",
+    "moderation",
+    "assistant"
+  ],
+  "features": {
+    "rag": false,
+    "mcp": false,
+    "graph": false,
+    "multitenant": false,
+    "blog": true
+  },
+  "humanApproval": true,
+  "deployAutomatically": false
+}

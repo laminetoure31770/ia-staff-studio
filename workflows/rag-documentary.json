@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "rag-documentary",
+  "title": "Document-grounded Q&A",
+  "status": "reference_only",
+  "execution": "disabled",
+  "humanApproval": true,
+  "nodes": [
+    {
+      "id": "query",
+      "kind": "input"
+    },
+    {
+      "id": "retrieve",
+      "kind": "retrieval"
+    },
+    {
+      "id": "evidence",
+      "kind": "evidence-validation"
+    },
+    {
+      "id": "draft",
+      "kind": "llm-draft"
+    },
+    {
+      "id": "approve",
+      "kind": "human-approval"
+    }
+  ]
+}

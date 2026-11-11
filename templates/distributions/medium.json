@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "medium",
+  "name": "AI STAFF Medium",
+  "description": "Multi-agent RAG and controlled integrations",
+  "status": "scaffold",
+  "storage": "postgres-vector",
+  "agents": 2,
+  "assistants": 2,
+  "monthlyTokenBudget": 1500000,
+  "contextLimit": 8192,
+  "modules": [
+    "agents",
+    "rag",
+    "mcp-gateway",
+    "dashboard"
+  ],
+  "features": {
+    "rag": true,
+    "mcp": true,
+    "graph": false,
+    "multitenant": false,
+    "blog": false
+  },
+  "humanApproval": true,
+  "deployAutomatically": false
+}

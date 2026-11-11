@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "enterprise",
+  "name": "AI STAFF Enterprise",
+  "description": "Multi-tenant IAM and advanced governance",
+  "status": "scaffold",
+  "storage": "enterprise",
+  "agents": 10,
+  "assistants": 5,
+  "monthlyTokenBudget": 20000000,
+  "contextLimit": 32768,
+  "modules": [
+    "iam-sso",
+    "multitenant",
+    "mcp",
+    "graphrag",
+    "abac",
+    "audit",
+    "pra"
+  ],
+  "features": {
+    "rag": true,
+    "mcp": true,
+    "graph": true,
+    "multitenant": true,
+    "blog": true
+  },
+  "humanApproval": true,
+  "deployAutomatically": false
+}

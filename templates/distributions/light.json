@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "light",
+  "name": "AI STAFF Light",
+  "description": "Assistant and elementary governance",
+  "status": "scaffold",
+  "storage": "postgres",
+  "agents": 0,
+  "assistants": 1,
+  "monthlyTokenBudget": 300000,
+  "contextLimit": 4096,
+  "modules": [
+    "assistant",
+    "rbac",
+    "audit"
+  ],
+  "features": {
+    "rag": false,
+    "mcp": false,
+    "graph": false,
+    "multitenant": false,
+    "blog": false
+  },
+  "humanApproval": true,
+  "deployAutomatically": false
+}

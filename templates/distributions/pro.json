@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "pro",
+  "name": "AI STAFF Pro",
+  "description": "Supervised orchestration and governance",
+  "status": "scaffold",
+  "storage": "hybrid",
+  "agents": 5,
+  "assistants": 3,
+  "monthlyTokenBudget": 5000000,
+  "contextLimit": 16384,
+  "modules": [
+    "orchestration",
+    "graphrag",
+    "rbac-abac",
+    "mcp",
+    "finops"
+  ],
+  "features": {
+    "rag": true,
+    "mcp": true,
+    "graph": true,
+    "multitenant": false,
+    "blog": false
+  },
+  "humanApproval": true,
+  "deployAutomatically": false
+}
